@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import SearchBar from "./SearchBar";
 import CustomFilter from "./CustomFilter";
 import SearchComic from "./SearchComics";
+import CardsGrid from "./CardsGrid";
 
 export{
     Hero,
@@ -13,5 +14,6 @@ export{
     Footer, 
     CustomFilter,
     SearchBar,
-    SearchComic
+    SearchComic,
+    CardsGrid
 }
