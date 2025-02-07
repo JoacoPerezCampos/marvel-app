@@ -1,38 +1,51 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const SearchBar = () => {
-  const [character, setCharacter] = useState('')
+  const [character, setCharacter] = useState('');
   const router = useRouter();
+  const searchParams = useSearchParams();
 
+  // Search handle with debounce 
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      if (character.trim() !== '') {
+        updateSearchParams(character.toLowerCase());
+      } else {
+        clearSearchParams();
+      }
+    }, 200); 
+
+    return () => clearTimeout(debounceTimer); 
+  }, [character]);
+
+  // Search handle with Enter
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (character === '') {
-      return alert('Please fill in the search bar')
+    if (character.trim() === '') {
+      return alert('Por favor, ingresa un nombre para buscar.');
     }
     updateSearchParams(character.toLowerCase());
+  };
 
-  }
-
+  
   const updateSearchParams = (character: string) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    if (character) {
-      searchParams.set('character', character)
-    } else {
-      searchParams.delete('character')
-    }
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('character', character);
+    router.push(`${window.location.pathname}?${params.toString()}`);
+  };
 
-    const newPathName = `${window.location.pathname}?${searchParams.toString()}`
-    router.push(newPathName)
-
-  }
-
+  // Clean the search
+  const clearSearchParams = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('character');
+    router.push(window.location.pathname);
+  };
 
   return (
-    <form id="searchBar" className="searchbar" onSubmit={handleSearch}>
+    <form className="searchbar" onSubmit={handleSearch}>
       <div className='searchbar__item'>
         <input
           type="text"
@@ -40,18 +53,20 @@ const SearchBar = () => {
           value={character}
           onChange={(e) => setCharacter(e.target.value)}
           placeholder='Spider Man'
-          className='searchbar__input' />
+          className='searchbar__input'
+        />
         <button type='submit' className='ml-3 z-10'>
           <Image
             src="/magnifying-glass.svg"
             alt="search icon"
             width={60}
             height={60}
-            className='object-contain' />
+            className='object-contain'
+          />
         </button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

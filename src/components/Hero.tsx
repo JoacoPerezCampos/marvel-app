@@ -13,7 +13,7 @@ const Hero = () => {
         <a href="#searchBar">
           <CustomButton
             title="Search heroes"
-            containerStyles="bg-primary-blue text-white rounded-full mt-10"
+            containerStyles="bg-gray-900 text-white rounded-full mt-10"
             handleClick={handleScroll}
           />
         </a>

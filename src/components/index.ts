@@ -3,8 +3,8 @@ import CustomButton from "./CustomButton";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import SearchBar from "./SearchBar";
-import CustomFilter from "./CustomFilter";
 import Details from "./Details";
+import ShowMore from "./ShowMore";
 
 
 export{
@@ -12,7 +12,7 @@ export{
     CustomButton,
     Navbar,
     Footer, 
-    CustomFilter,
     SearchBar,
-    Details
+    Details,
+    ShowMore
 }

@@ -1,5 +1,5 @@
 import { getCharacters } from "@/api/marvelAPI";
-import { CustomFilter, Hero, SearchBar } from "@/components";
+import { Hero, SearchBar, ShowMore } from "@/components";
 import Card from "@/components/Card";
 
 
@@ -9,12 +9,12 @@ export default async function Home({searchParams}) {
   
   
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden ">
       <Hero />
 
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
-          <h1 className="text-4xl font-extrabold">Catalog</h1>
+          <h1 id="searchBar" className="text-4xl font-extrabold">Catalog</h1>
           <p className="text 2xl">Search your favourite Marvel character</p>
         </div>
         <div className="home_filters">
@@ -29,6 +29,9 @@ export default async function Home({searchParams}) {
           <div className="home__characters-wrapper">
             {allCharacters?.map((character) => <Card key={character.id} character={character} />)}
           </div>
+          <ShowMore 
+          pageNumber={(searchParams.pageNumber || 20)/10}
+          isNext={(searchParams.limit ||10)> allCharacters.length}/>
         </section>
       ) : (
         <div className="home__error-container">
@@ -36,6 +39,7 @@ export default async function Home({searchParams}) {
           <p>{allCharacters?.message}</p>
         </div>
       )}
+
       
     </main>
 
