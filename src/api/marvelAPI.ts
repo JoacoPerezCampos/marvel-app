@@ -20,3 +20,4 @@ export const getCharacters = async (query = "", offset = 0) => {
     }
 }; 
 
+

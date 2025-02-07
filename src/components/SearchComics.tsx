@@ -51,7 +51,7 @@ const SearchComic = ({ comic, setComic }: SearchComicProps) => {
                             {filteredComics.length === 0 && query !== "" ? (
                                 <Combobox.Option
                                     value={query}
-                                    className="search-comic__option">
+                                    className="search-comic__options">
                                     Not found results for "{query}"
                                 </Combobox.Option>
                             ) : (
