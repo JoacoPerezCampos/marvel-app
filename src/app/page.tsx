@@ -3,8 +3,8 @@ import { CustomFilter, Hero, SearchBar } from "@/components";
 import Card from "@/components/Card";
 
 
-export default async function Home() {
-  const allCharacters = await getCharacters();
+export default async function Home({searchParams}) {
+  const allCharacters = await getCharacters({character: searchParams.character || ""});
   const isDataEmpty = !Array.isArray(allCharacters) || allCharacters.length < 1 || !allCharacters;
   
   
@@ -20,8 +20,7 @@ export default async function Home() {
         <div className="home_filters">
           <SearchBar />
           <div className="home__filters-container"></div>
-          <CustomFilter title="comics" />
-          <CustomFilter title="series" />
+          
         </div>
       </div>
 

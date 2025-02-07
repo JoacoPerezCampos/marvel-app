@@ -10,12 +10,13 @@ const Hero = () => {
       <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">Marvel Heroes App</h1>
         <p className="hero__subtitle">Search and access information about Marvel's vast library of comics <br />—from what's coming up, to 70 years ago.</p>
-
-        <CustomButton
-          title="Search heroes"
-          containerStyles="bg-primary-blue text-white rounded-full mt-10"
-          handleClick={handleScroll}
-        />
+        <a href="#searchBar">
+          <CustomButton
+            title="Search heroes"
+            containerStyles="bg-primary-blue text-white rounded-full mt-10"
+            handleClick={handleScroll}
+          />
+        </a>
       </div>
       <div className="hero__image-container">
         <div className="hero__image w-full h-full">
