@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 
-export interface CustomButtonProps{
+export interface CustomButtonProps {
     title: string;
     containerStyles?: string;
     textStyles?: string;
@@ -9,25 +9,41 @@ export interface CustomButtonProps{
     isDisabled?: boolean;
 }
 
-export interface SearchComicProps{
+export interface SearchComicProps {
     comic: string;
-    setComic: (comic:string) => void;
+    setComic: (comic: string) => void;
 }
 
 export interface CharacterProps {
     comics: {
         items: {
-            resourceURI: string,
             name: string
         }
     }
     description: string;
     id: number;
     name: string;
-    series: object;
+    series: {
+        items: {
+            name: string
+        }
+    }
     thumbnail: {
         path: string,
         extension: string
     }
-    
+}
+
+export interface CharacterCardProps {
+    character: CharacterProps;
+}
+
+export interface DetailsProps{
+    isOpen:boolean;
+    closeModal: () => void;
+    character: CharacterProps
+}
+
+export interface FilterProps{
+    character: string;
 }

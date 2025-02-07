@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import SearchBar from "./SearchBar";
 import CustomFilter from "./CustomFilter";
-import SearchComic from "./SearchComics";
+import Details from "./Details";
 
 
 export{
@@ -14,6 +14,5 @@ export{
     Footer, 
     CustomFilter,
     SearchBar,
-    SearchComic,
-    
+    Details
 }

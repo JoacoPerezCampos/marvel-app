@@ -10,7 +10,8 @@
   box-sizing: border-box;
   font-family: "Inter", serif;
   font-weight: 400;
-  font-style: normal, bold, italic;
+  font-style: bold;
+  
 }
 
 /* START: General styles */
@@ -42,6 +43,7 @@
 /* START: Hero styles */
 .hero {
   @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
+  
 }
 
 .hero__title {
@@ -90,11 +92,11 @@
 
 /* START: Card styles */
 .card {
-  @apply flex flex-col p-6 justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl;
+  @apply flex flex-col p-6 justify-center items-start text-black-100 bg-stone-300 hover:bg-stone-400 hover:shadow-md rounded-3xl;
 }
 
 .card__content {
-  @apply w-full flex justify-between items-start gap-2;
+  @apply w-full flex justify-center items-start gap-2;
 }
 
 .card__content-title {

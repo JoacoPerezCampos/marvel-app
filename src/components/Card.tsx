@@ -3,12 +3,10 @@
 import { useState } from 'react';
 import React from 'react'
 import Image from 'next/image';
-import { CharacterProps } from '@/types';
+import { CharacterProps, CharacterCardProps } from '@/types';
 import CustomButton from './CustomButton';
+import Details from './Details';
 
-interface CharacterCardProps {
-    character: CharacterProps;
-}
 
 const Card = ({ character }: CharacterCardProps) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +18,10 @@ const Card = ({ character }: CharacterCardProps) => {
                     {character.name}
                 </h2>
             </div>
-            <div className='relative w-full h-40 mx-auto my-3 object-contain'>
-                <Image style={{ objectFit: 'cover' }} src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt={character.name} width={300} height={250} />
+            <div className='relative w-full h-72 my-1 object-contain'>
+                <Image src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt={character.name} fill className='object-contain' />
+            </div>
+            <div className='relative flex w-full mt-2'>
                 <div className='card__btn-container'>
                     <CustomButton
                         title="Show more"
@@ -31,7 +31,7 @@ const Card = ({ character }: CharacterCardProps) => {
                     />
                 </div>
             </div>
-
+            <Details isOpen={isOpen} closeModal={() => setIsOpen(false)} character={character}/>
         </div>
     );
 };
