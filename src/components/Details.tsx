@@ -74,7 +74,7 @@ const Details = ({ isOpen, closeModal, character }: DetailsProps) => {
                                         />
                                     </button>
                                     <div className='object-contain'>
-                                        <div className='relative w-full h-[900] bg-pattern bg-cover rounded-lg'>
+                                        <div className='relative w-full h-[900px] bg-pattern bg-cover rounded-lg'>
                                             <Image
                                                 src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                                                 alt={character.name}
