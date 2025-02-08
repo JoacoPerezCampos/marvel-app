@@ -9,7 +9,7 @@ const Hero = () => {
     <div className="hero">
       <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">Marvel Heroes App</h1>
-        <p className="hero__subtitle">Search and access information about Marvel's vast library of comics <br />—from what's coming up, to 70 years ago.</p>
+        <p className="hero__subtitle">Search and access information about Marvel&#39;s vast library of comics <br />—from what's coming up, to 70 years ago.</p>
         <a href="#searchBar">
           <CustomButton
             title="Search heroes"

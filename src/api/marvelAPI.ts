@@ -1,4 +1,4 @@
-import { CharacterProps, FilterProps } from "@/types";
+import { FilterProps } from "@/types";
 import axios from "axios";
 
 const baseUrl = 'https://gateway.marvel.com/v1/public';

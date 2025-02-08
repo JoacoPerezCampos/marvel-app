@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -31,11 +31,11 @@ const SearchBar = () => {
   };
 
   
-  const updateSearchParams = (character: string) => {
+  const updateSearchParams = useCallback((character: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('character', character);
     router.push(`${window.location.pathname}?${params.toString()}`);
-  };
+  }, [router, searchParams]);
 
   // Clean the search
   const clearSearchParams = () => {
