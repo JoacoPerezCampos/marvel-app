@@ -1,31 +1,35 @@
 "use client";
-import React from 'react'
-import { useRouter } from 'next/navigation';
-import { ShowMoreProps } from '@/types';
-import CustomButton from './CustomButton';
-import { updateSearchParams } from '@/api/marvelAPI';
+import { useRouter, useSearchParams } from "next/navigation";
 
-
-const ShowMore = ({pageNumber, isNext}: ShowMoreProps) => {
-    const router = useRouter();
-
-    const handleNavigation = () => {
-        const newLimit = (pageNumber + 1) * 10;
-        const newPathName = updateSearchParams("limit", `${newLimit}`);
-
-        router.push(newPathName)
-    }
-  return (
-    <div className='w-full flex-center gap-5 mt-10'>
-        {!isNext && (
-            <CustomButton
-            title='Show More'
-            btnType='button'
-            containerStyles='bg-gray-900 text-white rounded-full mt-10'
-            handleClick={handleNavigation}/>
-        )}
-    </div>
-  )
+interface ShowMoreProps {
+  pageNumber: number;
+  isNext: boolean;
 }
 
-export default ShowMore
+const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleShowMore = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("pageNumber", (pageNumber + 1).toString());
+    params.set("limit", "20"); // Puedes ajustar el límite aquí
+
+    router.push(`/?${params.toString()}`);
+  };
+
+  return (
+    <div className="flex justify-center items-center mt-4">
+      {isNext && (
+        <button
+          onClick={handleShowMore}
+          className="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          Next
+        </button>
+      )}
+    </div>
+  );
+};
+
+export default ShowMore;

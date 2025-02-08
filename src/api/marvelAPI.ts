@@ -8,16 +8,17 @@ const hash = "066c111cf28616b5e0ea6ec82e8b13b7";
 
 
 
-export const getCharacters = async (filter: FilterProps) => {
-    const { character } = filter
+export const getCharacters = async (filter: FilterProps, limit = 20, offset = 0 ) => {
+    const { character } = filter;
     try {
-        if (!character || character.trim() === "") {
-            const response = await axios.get(`${baseUrl}/characters?&ts=${ts}&apikey=${publicKey}&hash=${hash}`);
-            console.log('Api response:', response.data)
-            return response.data.data.results;
-        }
-        const response = await axios.get(`${baseUrl}/characters?&ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${character.toLowerCase()}`);
-        console.log('Api response:', response.data)
+        const baseParams = `ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
+
+        const url = character && character.trim() !== ""
+            ? `${baseUrl}/characters?${baseParams}&nameStartsWith=${character.toLowerCase()}`
+            : `${baseUrl}/characters?${baseParams}`;
+
+        const response = await axios.get(url);
+        console.log('API Response:', response.data);
         return response.data.data.results;
     } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -28,7 +29,6 @@ export const getCharacters = async (filter: FilterProps) => {
         throw error;
     }
 };
-
 export const getCharacterComics = async (characterId: number) => {
     try {
         const response = await axios.get(`${baseUrl}/characters/${characterId}/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}`);
