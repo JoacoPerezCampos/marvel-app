@@ -48,7 +48,7 @@ export const getCharacterSeries = async (characterId: number) => {
     try {
         const response = await axios.get(`${baseUrl}/characters/${characterId}/series?ts=${ts}&apikey=${publicKey}&hash=${hash}`);
         console.log('Series response:', response.data);
-        return response.data.data.results.map((series: any) => series.name);
+        return response.data.data.results.map((series: any) => series.title);
     } catch (error) {
         const e = error as Error;
         console.error('Error fetching series:', e.message);
