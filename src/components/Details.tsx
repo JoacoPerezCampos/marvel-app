@@ -10,7 +10,7 @@ import { getCharacterComics, getCharacterSeries } from '@/api/marvelAPI';
 const Details = ({ isOpen, closeModal, character }: DetailsProps) => {
     const [comicNames, setComicNames] = useState<string[]>([]);
     const [seriesNames, setSeriesNames] = useState<string[]>([]);
-    const [loading, setLoading] = useState(false); // Un solo estado de carga
+    const [loading, setLoading] = useState(false); 
 
     useEffect(() => {
         if (isOpen) {

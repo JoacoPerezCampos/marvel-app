@@ -2,7 +2,8 @@ import { getCharacters } from "@/api/marvelAPI";
 import { Hero, SearchBar, ShowMore } from "@/components";
 import Card from "@/components/Card";
 
-export default async function Home({ searchParams }: { searchParams: Record<string, string>} ) {
+export default async function Home(props: { searchParams: Promise<Record<string, string>>}) {
+  const searchParams = await props.searchParams;
   const limit = parseInt(searchParams.limit) || 20;
   const pageNumber = parseInt(searchParams.pageNumber) || 1;
   const offset = (pageNumber - 1) * limit;
