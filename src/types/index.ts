@@ -25,7 +25,7 @@ export interface CharacterProps {
     name: string;
     series: {
         items: {
-            name: string
+            title: string
         }
     }
     thumbnail: {
