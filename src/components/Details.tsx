@@ -60,7 +60,7 @@ const Details = ({ isOpen, closeModal, character }: DetailsProps) => {
                                 leaveFrom='opacity-100 scale-100'
                                 leaveTo='opacity-0 scale-90'
                             >
-                                <Dialog.Panel className="relative w-full max-w-[900] max-h-lg overflow-y-auto rounded-2xl p-6 bg-stone-400 text shadow-xsl transition-all">
+                                <Dialog.Panel className="relative w-800 max-w-[900] max-h-lg overflow-y-auto rounded-2xl p-6 bg-stone-400 text shadow-xsl transition-all">
                                     <button type='button'
                                         className='absolute top-2 right-2 z-10 w-fit p-2 bg-transparent'
                                         onClick={closeModal}
@@ -73,8 +73,8 @@ const Details = ({ isOpen, closeModal, character }: DetailsProps) => {
                                             className='object-contain'
                                         />
                                     </button>
-                                    <div className='object-contain'>
-                                        <div className='relative w-full h-[600px] bg-pattern bg-cover rounded-lg'>
+                                    <div className='object-contain items-center'>
+                                        <div className='relative w-[750px] h-[600px] bg-pattern bg-cover rounded-lg'>
                                             <Image
                                                 src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                                                 alt={character.name}
