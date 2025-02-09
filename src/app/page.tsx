@@ -2,14 +2,14 @@ import { getCharacters } from "@/api/marvelAPI";
 import { Hero, SearchBar, ShowMore } from "@/components";
 import Card from "@/components/Card";
 
-export default async function Home(props: { searchParams: Promise<Record<string, string>>}) {
+export default async function Home(props: { searchParams: Promise<Record<string, string>> }) {
   const searchParams = await props.searchParams;
   const limit = parseInt(searchParams.limit) || 20;
   const pageNumber = parseInt(searchParams.pageNumber) || 1;
   const offset = (pageNumber - 1) * limit;
 
   const allCharacters = await getCharacters(
-    { character: searchParams.character || "" },
+    { nameStartsWith: searchParams.nameStartsWith || "" },
     limit,
     offset
   );
@@ -17,7 +17,7 @@ export default async function Home(props: { searchParams: Promise<Record<string,
   const isDataEmpty = !Array.isArray(allCharacters) || allCharacters.length < 1;
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden bg-gradient-to-l from-zinc-100 to-zinc-500">
       <Hero />
 
       <div className="mt-12 padding-x padding-y max-width" id="discover">
@@ -38,10 +38,18 @@ export default async function Home(props: { searchParams: Promise<Record<string,
               <Card key={character.id} character={character} />
             ))}
           </div>
-          <ShowMore 
-            pageNumber={pageNumber}
-            isNext={allCharacters.length === limit}
-          />
+          <div className="flex justify-center items-center mt-4 space-x-4">
+            <ShowMore
+              pageNumber={pageNumber}
+              isNext={pageNumber > 1}
+              direction="previous"
+            />
+            <ShowMore
+              pageNumber={pageNumber}
+              isNext={allCharacters.length === limit}
+              direction="next"
+            />
+          </div>
         </section>
       ) : (
         <div className="home__error-container">

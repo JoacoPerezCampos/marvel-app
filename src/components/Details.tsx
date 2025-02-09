@@ -60,7 +60,7 @@ const Details = ({ isOpen, closeModal, character }: DetailsProps) => {
                                 leaveFrom='opacity-100 scale-100'
                                 leaveTo='opacity-0 scale-90'
                             >
-                                <Dialog.Panel className="relative w-800 max-w-[900] max-h-lg overflow-y-auto rounded-2xl p-6 bg-stone-400 text shadow-xsl transition-all">
+                                <Dialog.Panel className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl p-4 bg-stone-400 shadow-xl transition-all">
                                     <button type='button'
                                         className='absolute top-2 right-2 z-10 w-fit p-2 bg-transparent'
                                         onClick={closeModal}
@@ -73,41 +73,41 @@ const Details = ({ isOpen, closeModal, character }: DetailsProps) => {
                                             className='object-contain'
                                         />
                                     </button>
-                                    <div className='object-contain items-center'>
-                                        <div className='relative w-[750px] h-[600px] bg-pattern bg-cover rounded-lg'>
+                                    <div className='flex flex-col items-center gap-4'>
+                                        <div className='relative w-full h-64 sm:h-80 md:h-96 bg-pattern rounded-lg overflow-auto'>
                                             <Image
                                                 src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                                                 alt={character.name}
-                                                className='object-contain p-12 rounded-2xl'
+                                                className='object-contain p-4 rounded-2xl'
                                                 fill
                                                 priority />
                                         </div>
                                     </div>
-                                    <div className='object-contain'>
-                                        <h2 className='font-bold text-3xl capitalize mt-3'>{character.name}</h2>
-                                        <div className='m-1'>
+                                    <div className='w-full text-left'>
+                                        <h2 className='font-bold text-2xl sm:text-3xl capitalize mt-3'>{character.name}</h2>
+                                        <div className='mt-2'>
                                             <div className='p-3 justify-evenly w-full text-left'>
-                                                <h3 className='font-bold text-xl capitalize mt-2'>Description:</h3>
-                                                <p className='text-xl'>{character.description}</p>
-                                                <h3 className='font-bold text-xl capitalize mt-2'>Comics</h3>
+                                                <h3 className='font-bold text-lg sm:text-xl capitalize'>Description:</h3>
+                                                <p className='text-base sm:text-lg'>{character.description || 'No description available'}</p>
+                                                <h3 className='font-bold text-lg sm:text-xl capitalize mt-4'>Comics</h3>
                                                 {loading ? (
                                                     <p className='text-gray-500'> Loading comics...</p>
                                                 ) : comicNames.length > 0 ? (
-                                                    <ul className='list-disc ml-5 mt-2'>
+                                                    <ul className='list-disc ml-5 mt-2 space-y-1'>
                                                         {comicNames.map((name, index) => (
-                                                            <li key={index} className='text-lg'>{name}</li>
+                                                            <li key={index} className='text-base sm:text-lg'>{name}</li>
                                                         ))}
                                                     </ul>
                                                 ) : (
                                                     <p className='text-gray-500'>No comics available.</p>
                                                 )}
-                                                <h3 className='font-bold text-xl capitalize mt-2'>Series</h3>
+                                                <h3 className='font-bold text-lg sm:text-xl capitalize mt-4'>Series</h3>
                                                 {loading ? (
                                                     <p className='text-gray-500'> Loading series...</p>
                                                 ) : seriesNames.length > 0 ? (
-                                                    <ul className='list-disc ml-5 mt-2'>
+                                                    <ul className='list-disc ml-5 mt-2 space-y-1'>
                                                         {seriesNames.map((name, index) => (
-                                                            <li key={index} className='text-lg'>{name}</li>
+                                                            <li key={index} className='text-base sm:text-lg'>{name}</li>
                                                         ))}
                                                     </ul>
                                                 ) : (

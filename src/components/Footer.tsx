@@ -4,7 +4,7 @@ import { footerLinks } from "@/constants";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-gray-800 to-gray-900 flex flex-col text-white-100 mt-5 border-t border-gray-100">
+    <footer className="bg-gradient-to-r from-zinc-800 to-zinc-900 flex flex-col text-white-100 mt-5 border-t border-gray-100">
       <div className="flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10">
         <div className="flex flex-col justify-start items-start gap-6">
           <Image

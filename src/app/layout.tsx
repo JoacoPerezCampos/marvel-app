@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="relative">
+        className="relative bg-gradient-to-l from-zinc-100 to-zinc-500">
         <Navbar />
         {children}
         <Footer />

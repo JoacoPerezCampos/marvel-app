@@ -45,6 +45,6 @@ export interface DetailsProps{
 }
 
 export interface FilterProps{
-    character?: string;
+    nameStartsWith?: string;
 }
 

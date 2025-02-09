@@ -8,18 +8,6 @@ const SearchBar = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Search handle with debounce 
-  useEffect(() => {
-    const debounceTimer = setTimeout(() => {
-      if (character.trim() !== '') {
-        updateSearchParams(character.toLowerCase());
-      } else {
-        clearSearchParams();
-      }
-    }, 200); 
-
-    return () => clearTimeout(debounceTimer); 
-  }, [character]);
 
   // Search handle with Enter
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,20 +15,19 @@ const SearchBar = () => {
     if (character.trim() === '') {
       return alert('Por favor, ingresa un nombre para buscar.');
     }
-    updateSearchParams(character.toLowerCase());
+    updateSearchParams(character);
   };
 
-  
   const updateSearchParams = useCallback((character: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('character', character);
+    params.set('nameStartsWith', character); 
     router.push(`${window.location.pathname}?${params.toString()}`);
   }, [router, searchParams]);
 
   // Clean the search
   const clearSearchParams = () => {
     const params = new URLSearchParams(searchParams.toString());
-    params.delete('character');
+    params.delete('nameStartsWith');
     router.push(window.location.pathname);
   };
 
@@ -52,15 +39,15 @@ const SearchBar = () => {
           name='character'
           value={character}
           onChange={(e) => setCharacter(e.target.value)}
-          placeholder='Spider Man'
+          placeholder='Ej: Spider'
           className='searchbar__input'
         />
         <button type='submit' className='ml-3 z-10'>
           <Image
             src="/magnifying-glass.svg"
             alt="search icon"
-            width={60}
-            height={60}
+            width={30}
+            height={30}
             className='object-contain'
           />
         </button>
